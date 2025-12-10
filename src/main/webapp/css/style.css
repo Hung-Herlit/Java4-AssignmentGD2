@@ -1,0 +1,85 @@
+:root {
+    --primary-color: #ff0000; /* Màu đỏ Youtube */
+    --dark-bg: #0f0f0f;
+    --light-text: #f1f1f1;
+    --card-bg: #1e1e1e;
+}
+
+/* ... Các code cũ giữ nguyên ... */
+
+/* FIX TOÀN CỤC: Ép màu chữ sáng cho tất cả tiêu đề */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+}
+
+/* Các class hỗ trợ text sáng hơn */
+.text-light-emphasis {
+    color: #e0e0e0 !important;
+}
+
+/* Chỉnh lại màu text-secondary của Bootstrap cho sáng hơn trên nền tối */
+.text-secondary {
+    color: #b0b0b0 !important; /* Xám sáng thay vì xám tối */
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #202020 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.navbar-brand {
+    font-weight: bold;
+    color: var(--light-text) !important;
+}
+.search-bar {
+    background-color: #121212;
+    border: 1px solid #303030;
+    color: white;
+}
+.search-bar:focus {
+    background-color: #121212;
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+.search-bar::placeholder {
+    color: #acacac !important; /* Màu xám sáng */
+    opacity: 1; /* Đảm bảo hiển thị rõ trên Firefox */
+}
+
+/* Video Card */
+.video-card {
+    background-color: transparent;
+    border: none;
+    transition: transform 0.2s;
+}
+.video-card:hover {
+    transform: scale(1.02);
+    z-index: 10;
+}
+.video-thumbnail {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+}
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card-title {
+    color: var(--light-text);
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: 500;
+}
+.card-text {
+    color: #aaaaaa;
+    font-size: 0.85rem;
+}
