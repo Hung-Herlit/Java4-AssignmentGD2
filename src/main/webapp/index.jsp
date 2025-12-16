@@ -25,10 +25,10 @@
 						</div>
 						<div class="card-body px-0">
 							<h5 class="card-title text-truncate">${video.title}</h5>
-							<%--<p class="card-text">
+							<p class="card-text">
 								${video.views} lượt xem
-								--Nếu có ngày đăng thì hiển thị thêm ở đây 
-							</p>--%>
+								
+							</p>
 						</div>
 					</div>
 				</div>

@@ -13,10 +13,10 @@ import java.util.List;
 @WebServlet({"/index", "/home"}) // URL mapping
 public class HomeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private VideoDAO videoDAO = new VideoDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	VideoDAO videoDAO = new VideoDAO();
         // 1. Lấy danh sách video Active từ CSDL
         // (Tạm thời lấy hết, sau này có thể thêm phân trang)
         List<Video> videos = videoDAO.findAllActive(); 
