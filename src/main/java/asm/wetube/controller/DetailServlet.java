@@ -1,7 +1,9 @@
 package asm.wetube.controller;
 
+import asm.wetube.dao.CommentDAO;
 import asm.wetube.dao.FavoriteDAO;
 import asm.wetube.dao.VideoDAO;
+import asm.wetube.entity.Comment;
 import asm.wetube.entity.User;
 import asm.wetube.entity.Video;
 import jakarta.servlet.ServletException;
@@ -59,6 +61,11 @@ public class DetailServlet extends HttpServlet {
 
         req.setAttribute("video", video);
         req.setAttribute("relatedVideos", relatedVideos);
+        
+     // Trong phương thức doGet, thêm đoạn này vào cuối (trước khi forward):
+        CommentDAO commentDAO = new CommentDAO();
+        List<Comment> comments = commentDAO.findByVideoId(id);
+        req.setAttribute("comments", comments);
 
         req.getRequestDispatcher("/views/detail.jsp").forward(req, resp);
     }

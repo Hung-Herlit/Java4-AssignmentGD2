@@ -178,7 +178,68 @@
                         ${video.description}
                     </p>
                 </div>
-            </div>
+                <hr class="border-secondary my-4">
+
+				<div id="comments">
+					<h5 class="text-white mb-3">
+						Bình luận <span class="text-secondary">(${comments.size()})</span>
+					</h5>
+
+					<c:choose>
+						<c:when test="${not empty sessionScope.currentUser}">
+							<div class="d-flex gap-3 mb-4">
+								<img
+									src="https://ui-avatars.com/api/?name=${sessionScope.currentUser.fullname}&background=random"
+									class="rounded-circle" width="40" height="40">
+								<form action="comment" method="post" class="w-100">
+									<input type="hidden" name="videoId" value="${video.id}">
+									<div class="form-floating mb-2">
+										<textarea
+											class="form-control bg-dark text-white border-secondary"
+											placeholder="Viết bình luận..." name="content"
+											style="height: 60px" required></textarea>
+										<label class="text-secondary">Viết bình luận...</label>
+									</div>
+									<div class="d-flex justify-content-end">
+										<button type="submit"
+											class="btn btn-primary btn-sm rounded-pill px-3">Bình
+											luận</button>
+									</div>
+								</form>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div
+								class="alert alert-dark border-secondary text-secondary mb-4">
+								Vui lòng <a href="login"
+									class="text-danger fw-bold text-decoration-none">đăng nhập</a>
+								để bình luận.
+							</div>
+						</c:otherwise>
+					</c:choose>
+
+					<div class="comment-list">
+						<c:forEach items="${comments}" var="cmt">
+							<div class="d-flex gap-3 mb-3">
+								<img
+									src="https://ui-avatars.com/api/?name=${cmt.user.fullname}&background=random"
+									class="rounded-circle" width="40" height="40">
+								<div>
+									<div class="text-white fw-bold" style="font-size: 0.9rem;">
+										${cmt.user.fullname} <span
+											class="text-secondary fw-normal ms-2"
+											style="font-size: 0.8rem;"> <fmt:formatDate
+												value="${cmt.commentDate}" pattern="dd/MM/yyyy" />
+										</span>
+									</div>
+									<p class="text-light-emphasis mb-0 mt-1"
+										style="font-size: 0.95rem;">${cmt.content}</p>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
 
             <div class="col-lg-4">
                 <h5 class="text-white mb-3">Video khác</h5>
