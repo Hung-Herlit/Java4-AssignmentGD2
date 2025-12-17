@@ -30,15 +30,20 @@ public class User {
     @Column(name="Fullname")
     private String fullname;
     
+    @Column(name="Picture")
+    private String picture;
+    
     @Column(name="Admin")
     private Boolean admin = false; // Mặc định là false (người dùng thường)
 
     // Liên kết 1-N tới bảng Favorite
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", cascade = jakarta.persistence.CascadeType.ALL)
     List<Favorite> favorites;
     
     // Liên kết 1-N tới bảng Share
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", cascade = jakarta.persistence.CascadeType.ALL)
     List<Share> shares;
     
+    @OneToMany(mappedBy="user", cascade = jakarta.persistence.CascadeType.ALL)
+    List<Comment> comments;
 }

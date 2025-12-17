@@ -36,7 +36,8 @@ public class AdminVideoServlet extends HttpServlet {
             String id = req.getParameter("id");
             Video video = videoDAO.findById(id);
             if (video != null) {
-                videoDAO.delete(video);
+            	video.setActive(false);
+                videoDAO.update(video);
             }
             resp.sendRedirect(req.getContextPath() + "/admin/videos");
 

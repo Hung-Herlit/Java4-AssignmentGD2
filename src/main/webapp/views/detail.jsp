@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -189,7 +190,8 @@
 						<c:when test="${not empty sessionScope.currentUser}">
 							<div class="d-flex gap-3 mb-4">
 								<img
-									src="https://ui-avatars.com/api/?name=${sessionScope.currentUser.fullname}&background=random"
+									src="${pageContext.request.contextPath}/images/${empty sessionScope.currentUser.picture ? 'user-default.png' : sessionScope.currentUser.picture}"
+									 onerror="this.src='https://ui-avatars.com/api/?name=${sessionScope.currentUser.fullname}'"
 									class="rounded-circle" width="40" height="40">
 								<form action="comment" method="post" class="w-100">
 									<input type="hidden" name="videoId" value="${video.id}">
@@ -202,8 +204,7 @@
 									</div>
 									<div class="d-flex justify-content-end">
 										<button type="submit"
-											class="btn btn-primary btn-sm rounded-pill px-3">Bình
-											luận</button>
+											class="btn btn-primary btn-sm rounded-pill px-3">Bình luận</button>
 									</div>
 								</form>
 							</div>
@@ -222,14 +223,16 @@
 						<c:forEach items="${comments}" var="cmt">
 							<div class="d-flex gap-3 mb-3">
 								<img
-									src="https://ui-avatars.com/api/?name=${cmt.user.fullname}&background=random"
-									class="rounded-circle" width="40" height="40">
+									src="${pageContext.request.contextPath}/images/${empty cmt.user.picture ? 'default.png' : cmt.user.picture}"
+									class="rounded-circle" width="40" height="40"
+									style="object-fit: cover;"
+									onerror="this.src='https://ui-avatars.com/api/?name=${cmt.user.fullname}'">
 								<div>
 									<div class="text-white fw-bold" style="font-size: 0.9rem;">
 										${cmt.user.fullname} <span
 											class="text-secondary fw-normal ms-2"
-											style="font-size: 0.8rem;"> <fmt:formatDate
-												value="${cmt.commentDate}" pattern="dd/MM/yyyy" />
+											style="font-size: 0.8rem;"> 
+											<fmt:formatDate value="${cmt.commentDate}" pattern="dd/MM/yyyy" />
 										</span>
 									</div>
 									<p class="text-light-emphasis mb-0 mt-1"

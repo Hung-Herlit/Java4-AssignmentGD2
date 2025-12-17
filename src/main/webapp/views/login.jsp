@@ -72,7 +72,6 @@
                                 Ghi nhớ
                             </label>
                         </div>
-                        <a href="${pageContext.request.contextPath}/forgot-password" class="text-decoration-none text-danger small">Quên mật khẩu?</a>
                     </div>
 
                     <div class="d-grid">
